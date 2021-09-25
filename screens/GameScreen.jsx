@@ -9,7 +9,9 @@ const names = Object.keys(nameToPic);
 
 export default function GameScreen() {
   // TODO: Declare and initialize state variables here, using "useState".
-
+  const [correct, setCorrect] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [round, setRound] = useState(0);
   // State for the timer is handled for you.
   const [timeLeft, setTimeLeft] = useState(5000);
 
@@ -18,9 +20,11 @@ export default function GameScreen() {
     if (timeLeft > 0) {
       // Time still left
       // TODO: update appropriate state variables
+      setTimeLeft(timeLeft - 10)
     } else {
       // Time has expired
       // TODO: update appropriate state variables
+      setRound(round + 1)
     }
   };
 
@@ -44,17 +48,17 @@ export default function GameScreen() {
     nameOptions = shuffle(nameOptions);
 
     // TODO: Update state here.
-
     setTimeLeft(5000);
   };
 
   // Called when user taps a name option.
   // TODO: Update correct # and total # state values.
-  const selectedNameChoice = (index) => {};
+  const selectedNameChoice = (index) => {
+  };
 
   useEffect(() => {
     /* TODO: Call the countDown() method every 10 milliseconds */
-  });
+  }, [round]);
 
   // TODO: Finish this useEffect() hook such that we automatically
   // get the next round when the appropriate state variable changes.
@@ -74,7 +78,16 @@ export default function GameScreen() {
 
   // Style & return the view.
   return (
-    <View>
+    <View style={{
+      justifyContent: "center",
+      alignItems: "center",
+      borderWidth: 5,
+      margin: 5,
+      padding: 5
+    }}>
+        <Image
+          source={require('../assets/MemberPictures/vaibhavgattani.jpg')}
+        />
       {/* TODO: Build out your UI using Text and Image components. */}
       {/* Hint: What does the nameButtons list above hold? 
           What types of objects is this list storing?
